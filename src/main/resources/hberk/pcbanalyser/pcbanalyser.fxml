@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="614.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hberk.pcbanalyser.Controller">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#imageChooser" text="Open" />
+                        <MenuItem mnemonicParsing="false" onAction="#exitApp" text="Exit Application" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#help" text="Instructions" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Original Image">
+               <content>
+                  <AnchorPane prefHeight="410.0" prefWidth="900.0">
+                     <children>
+                        <ImageView fx:id="imageView" fitHeight="497.0" fitWidth="579.0" layoutX="191.0" onMousePressed="#processImage" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="fileNameLabel" layoutX="18.0" layoutY="70.0" text="File Name:" />
+                        <Label fx:id="fileSizeLabel" layoutX="18.0" layoutY="100.0" text="File Size:" />
+                        <RadioButton fx:id="originalRadioButton" layoutX="18.0" layoutY="130.0" mnemonicParsing="false" onAction="#setOriginalRadioButton" text="Original" />
+                        <RadioButton fx:id="grayscaleRadioButton" layoutX="18.0" layoutY="160.0" mnemonicParsing="false" onAction="#setGrayscaleImageRadioButton" text="Grayscale" />
+                        <Button fx:id="redButton" layoutX="18.0" layoutY="190.0" mnemonicParsing="false" onAction="#setImageRed" text="Red" />
+                        <Button fx:id="greenButton" layoutX="68.0" layoutY="190.0" mnemonicParsing="false" onAction="#setImageGreen" text="Green" />
+                        <Button fx:id="blueButton" layoutX="128.0" layoutY="190.0" mnemonicParsing="false" onAction="#setImageBlue" text="Blue" />
+                        <ImageView fitHeight="40.0" fitWidth="129.0" layoutX="14.0" layoutY="11.0">
+                           <image>
+                              <Image url="@../pcbanalyser/pcbAnalyser.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+          <Tab text="Processed Image">
+            <content>
+              <AnchorPane>
+                     <children>
+                        <ImageView fx:id="processedImageView" fitHeight="497.0" fitWidth="579.0" layoutX="191.0" onMousePressed="#processImage" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="40.0" fitWidth="129.0" layoutX="14.0" layoutY="11.0">
+                           <image>
+                               <Image url="@../pcbanalyser/pcbAnalyser.png" />
+                           </image>
+                        </ImageView>
+                        <RadioButton fx:id="originalProcessRadioButton" layoutX="18.0" layoutY="70.0" mnemonicParsing="false" onAction="#setProcessedOriginalRadioButton" text="Original" />
+                        <RadioButton fx:id="bwRadioButton" layoutX="18.0" layoutY="110.0" mnemonicParsing="false" onAction="#setBwRadioButton" text="Black &amp; White " />
+                        <ComboBox fx:id="colourComboBox" layoutX="10.0" layoutY="440.0" onAction="#colourComponents" prefHeight="26.0" prefWidth="180.0" promptText="Colour of All Components" />
+                        <CheckBox fx:id="identifyComponentsCheckbox" layoutX="20.0" layoutY="270.0" mnemonicParsing="false" onAction="#setIdentifyComponentsCheckbox" text="Identify Components" />
+                        <CheckBox fx:id="randomColourCheckBox" layoutX="12.0" layoutY="400.0" mnemonicParsing="false" onAction="#colourComponentsRandomly" text="Colour Components Random" />
+                        <Slider fx:id="minRectSizeSlider" blockIncrement="0.0" layoutX="20.0" layoutY="350.0" majorTickUnit="10.0" max="120.0" min="40.0" minorTickCount="0" onMouseReleased="#onMinRectSizeSliderChanged" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="40.0" />
+                        <Text layoutX="18.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min.Component Size ( Pixels ) :" />
+                        <Label fx:id="componentsLabel" layoutX="21.0" layoutY="300.0" text="Number of Components: " />
+                        <RadioButton fx:id="singleCompRadioButton" layoutX="18.0" layoutY="150.0" mnemonicParsing="false" onAction="#setSingleCompRadioButton" text="Single Component Type" />
+                        <RadioButton fx:id="allCompRadioButton" layoutX="18.0" layoutY="190.0" mnemonicParsing="false" onAction="#setAllCompRadioButton" text="All Components" />
+                        <RadioButton fx:id="colourDSRadioButton" layoutX="18.0" layoutY="230.0" mnemonicParsing="false" onAction="#setColourDSRadioButton" text="Colour Disjoint Sets" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+    </children>
+</VBox>
